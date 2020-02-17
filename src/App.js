@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import pollServices from "./services/poll";
+
+import Form from "./components/Form";
+import List from "./components/List";
+
+const App = () => {
+	const [polls, setPolls] = useState([]);
+
+	useEffect(() => {
+		const fetchPolls = async () => {
+			const polls = await pollServices.getPolls();
+			setPolls(polls);
+		};
+		fetchPolls();
+	}, []);
+
+	return (
+		<div>
+			<h1>Create Poll</h1>
+			<Form polls={polls} setPolls={setPolls} />
+			<List polls={polls} />
+		</div>
+	);
+};
 
 export default App;
