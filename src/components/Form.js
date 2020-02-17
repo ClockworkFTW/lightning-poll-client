@@ -7,7 +7,7 @@ const Form = ({ polls, setPolls }) => {
 
 	const handleSubmit = async event => {
 		event.preventDefault();
-		const newPoll = await pollServices.createPoll({ title, options });
+		const newPoll = await pollServices.create({ title, options });
 		setPolls([...polls, newPoll]);
 	};
 
