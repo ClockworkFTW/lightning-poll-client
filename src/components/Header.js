@@ -1,11 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const Header = () => (
-	<div>
+	<Container>
 		<Link to="/poll">home</Link>
 		<Link to="/poll/new">create</Link>
-	</div>
+	</Container>
 );
+
+const Container = styled.div`
+	max-width: 600px;
+	margin: 0 auto;
+`;
 
 export default Header;

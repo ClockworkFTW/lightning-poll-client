@@ -12,8 +12,8 @@ const create = async poll => {
 	return result.data;
 };
 
-const vote = async (link, vote) => {
-	const result = await axios.patch(`${URL}/${link}`, { vote });
+const vote = async (link, votes) => {
+	const result = await axios.patch(`${URL}/${link}`, { votes });
 	return result.data;
 };
 
