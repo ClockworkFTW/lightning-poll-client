@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const List = ({ polls }) =>
+const Home = ({ polls }) =>
 	polls.map(poll => (
 		<Link key={poll.link} to={`/poll/${poll.link}`}>
 			<div>
@@ -10,4 +10,4 @@ const List = ({ polls }) =>
 		</Link>
 	));
 
-export default List;
+export default Home;
