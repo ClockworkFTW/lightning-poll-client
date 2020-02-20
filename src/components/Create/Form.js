@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import { Container } from "../Common";
+import Categories from "./Categories";
 
 const Form = ({ handleSubmit, renderButton }) => {
 	const [title, setTitle] = useState("");
-	const [category, setCategory] = useState("");
+	const [category, setCategory] = useState({
+		name: "category",
+		color: "grey"
+	});
 	const [options, setOptions] = useState(["", ""]);
 
 	const addOption = event => {
@@ -35,12 +39,7 @@ const Form = ({ handleSubmit, renderButton }) => {
 					/>
 					<QuestionLimit>{title.length}/100</QuestionLimit>
 				</Question>
-				<input
-					type="text"
-					placeholder="Category"
-					value={category}
-					onChange={event => setCategory(event.target.value)}
-				/>
+				<Categories category={category} setCategory={setCategory} />
 				<Options>
 					{options.map((option, index) => (
 						<Option key={index}>
