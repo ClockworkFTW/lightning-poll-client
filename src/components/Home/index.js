@@ -1,13 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-const Home = ({ polls }) =>
-	polls.map(poll => (
-		<Link key={poll.link} to={`/poll/${poll.link}`}>
-			<div>
-				<h3>{poll.title}</h3>
-			</div>
-		</Link>
-	));
+import Welcome from "./Welcome";
+import List from "./List";
+
+const Home = ({ polls }) => (
+	<Container>
+		<Welcome />
+		<List polls={polls} />
+	</Container>
+);
+
+const Container = styled.div`
+	padding: 1rem 0;
+	height: 100vh;
+	overflow: scroll;
+	background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
+`;
 
 export default Home;

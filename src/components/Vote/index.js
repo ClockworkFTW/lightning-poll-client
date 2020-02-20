@@ -27,9 +27,7 @@ const Vote = ({ polls, setPolls }) => {
 
 	return (
 		<>
-			<Header>
-				<Link to="/poll">home</Link>
-			</Header>
+			<Header path="/poll" link="poll details" />
 			<Display
 				poll={poll}
 				handleVote={handleVote}

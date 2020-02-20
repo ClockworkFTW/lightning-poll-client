@@ -4,6 +4,7 @@ import { createGlobalStyle } from "styled-components";
 
 import pollServices from "./services/poll";
 
+import Loader from "./components/Common/Loader";
 import Home from "./components/Home";
 import Create from "./components/Create";
 import Vote from "./components/Vote";
@@ -46,7 +47,7 @@ const App = () => {
 					</Route>
 				</Switch>
 			) : (
-				<h1>Loading...</h1>
+				<Loader />
 			)}
 		</Router>
 	);

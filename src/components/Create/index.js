@@ -38,9 +38,7 @@ const Create = ({ polls, setPolls }) => {
 
 	return (
 		<>
-			<Header>
-				<Link to="/poll">home</Link>
-			</Header>
+			<Header path="/poll" link="create poll" />
 			<Form handleSubmit={handleSubmit} renderButton={renderButton} />
 		</>
 	);
