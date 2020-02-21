@@ -8,17 +8,24 @@ const Categories = ({ category, setCategory }) => {
 	return (
 		<Container onClick={() => setToggle(!toggle)}>
 			{toggle ? (
-				categories.map(cat => (
+				categories.map((cat, i) => (
 					<Category
+						key={i}
 						active={cat.name === category.name}
 						color={cat.color}
+						background={cat.background}
 						onClick={() => setCategory(cat)}
 					>
 						{cat.name}
 					</Category>
 				))
 			) : (
-				<Category color={category.color}>{category.name}</Category>
+				<Category
+					color={category.color}
+					background={category.background}
+				>
+					{category.name}
+				</Category>
 			)}
 		</Container>
 	);
@@ -26,17 +33,20 @@ const Categories = ({ category, setCategory }) => {
 
 const Container = styled.div`
 	display: flex;
-	margin: 1rem 0;
 	overflow: scroll;
+	&::-webkit-scrollbar {
+		display: none;
+	}
 `;
 const Category = styled.h3`
 	margin-right: 0.5rem;
-	opacity: 0.5;
 	padding: 0.5rem 1rem;
 	border-radius: 500px;
-	font-size: 0.875rem;
-	background: ${props => props.color};
-	color: #ffffff;
+	font-size: 0.75rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	background: ${props => props.background};
+	color: ${props => props.color};
 `;
 
 export default Categories;

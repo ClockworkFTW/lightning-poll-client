@@ -11,7 +11,12 @@ const List = ({ polls }) => (
 			<Card>
 				<Header>
 					<Metadata>
-						<Category>{poll.category}</Category>
+						<Category
+							color={poll.category.color}
+							background={poll.category.background}
+						>
+							{poll.category.name}
+						</Category>
 						<Created>
 							{moment(poll.created).format("MMM DD, YYYY")}
 						</Created>
@@ -63,8 +68,8 @@ const Category = styled.h3`
 	font-size: 0.75rem;
 	font-weight: 700;
 	border-radius: 500px;
-	color: #ffffff;
-	background: #33c6fe;
+	color: ${props => props.color};
+	background: ${props => props.background};
 `;
 const Created = styled.h3`
 	font-size: 0.875rem;
