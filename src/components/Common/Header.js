@@ -1,13 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { Container } from "../Common";
 
 const Header = ({ path, link }) => (
 	<Wrapper>
 		<Container>
-			<RouterLink to={path}>{link}</RouterLink>
+			<RouterLink to={path}>
+				<FontAwesomeIcon
+					icon={["fal", "chevron-left"]}
+					style={{ marginRight: "1rem" }}
+				/>
+				{link}
+			</RouterLink>
 		</Container>
 	</Wrapper>
 );

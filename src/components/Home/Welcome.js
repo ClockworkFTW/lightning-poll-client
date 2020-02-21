@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { Container } from "../Common";
-
 const Welcome = () => (
 	<Container>
 		<Title>Welcome to Lightning Poll</Title>
@@ -12,6 +10,9 @@ const Welcome = () => (
 	</Container>
 );
 
+const Container = styled.div`
+	margin-bottom: 2rem;
+`;
 const Title = styled.h1`
 	font-family: "Nunito Sans", sans-serif;
 	font-size: 1.5rem;

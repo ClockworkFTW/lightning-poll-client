@@ -1,54 +1,47 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import moment from "moment";
 import styled from "styled-components";
 
-import { Container } from "../Common";
+const Card = ({ poll }) => {
+	return (
+		<Container>
+			<Header>
+				<Metadata>
+					<Category
+						color={poll.category.color}
+						background={poll.category.background}
+					>
+						{poll.category.name}
+					</Category>
+					<Votes>{poll.votes.reduce((a, b) => a + b, 0)} Votes</Votes>
+				</Metadata>
+				<Title>{poll.title}</Title>
+				<Details>
+					<AuthorProfile image={null} />
+					<AuthorName>By {poll.author}</AuthorName>
+					<Dot>&bull;</Dot>
+					<Expiration>
+						{poll.expiration
+							? `Ends ${poll.expiration}`
+							: "No end time"}
+					</Expiration>
+				</Details>
+			</Header>
+			<Options>
+				{poll.options.map((option, i) => (
+					<Option key={i}>{option}</Option>
+				))}
+			</Options>
+			<Footer>
+				<RouterLink key={poll.link} to={`/poll/${poll.link}`}>
+					View Poll
+				</RouterLink>
+			</Footer>
+		</Container>
+	);
+};
 
-const List = ({ polls }) => (
-	<Container>
-		{polls.map(poll => (
-			<Card>
-				<Header>
-					<Metadata>
-						<Category
-							color={poll.category.color}
-							background={poll.category.background}
-						>
-							{poll.category.name}
-						</Category>
-						<Created>
-							{moment(poll.created).format("MMM DD, YYYY")}
-						</Created>
-					</Metadata>
-					<Title>{poll.title}</Title>
-					<Details>
-						<AuthorProfile image={null} />
-						<AuthorName>By {poll.author}</AuthorName>
-						<Dot>&bull;</Dot>
-						<Expiration>
-							{poll.expiration
-								? `Ends ${poll.expiration}`
-								: "No end time"}
-						</Expiration>
-					</Details>
-				</Header>
-				<Options>
-					{poll.options.map(option => (
-						<Option>{option}</Option>
-					))}
-				</Options>
-				<Footer>
-					<RouterLink key={poll.link} to={`/poll/${poll.link}`}>
-						View Poll
-					</RouterLink>
-				</Footer>
-			</Card>
-		))}
-	</Container>
-);
-
-const Card = styled.div`
+const Container = styled.div`
 	margin-bottom: 1rem;
 	padding: 1.5rem;
 	border-radius: 0.5rem;
@@ -71,7 +64,7 @@ const Category = styled.h3`
 	color: ${props => props.color};
 	background: ${props => props.background};
 `;
-const Created = styled.h3`
+const Votes = styled.h3`
 	font-size: 0.875rem;
 	color: #a0aec0;
 `;
@@ -131,4 +124,4 @@ const RouterLink = styled(Link)`
 	color: #3b5ac9;
 `;
 
-export default List;
+export default Card;

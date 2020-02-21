@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Options = ({ options, setOptions }) => {
 	const addOption = event => {
@@ -23,24 +24,29 @@ const Options = ({ options, setOptions }) => {
 				<Option key={index}>
 					<Input
 						type="text"
-						placeholder={`Add option ${index + 1}`}
+						placeholder={`Option ${index + 1}`}
 						value={option}
 						onChange={event =>
 							editOption(event.target.value, index)
 						}
 					/>
-					<Button onClick={event => removeOption(event, index)}>
-						remove
-					</Button>
+					<RemoveButton onClick={event => removeOption(event, index)}>
+						<FontAwesomeIcon icon={["fal", "minus-square"]} />
+					</RemoveButton>
 				</Option>
 			))}
-			<button onClick={addOption}>add</button>
+			<AddButton onClick={addOption}>
+				<FontAwesomeIcon icon={["fal", "plus-square"]} />
+			</AddButton>
 		</Container>
 	);
 };
 
 const Container = styled.ul``;
-const Option = styled.li``;
+const Option = styled.li`
+	position: relative;
+	margin-bottom: 0.75rem;
+`;
 const Input = styled.input`
 	width: 100%;
 	padding: 0.875rem;
@@ -53,6 +59,17 @@ const Input = styled.input`
 		color: #818898;
 	}
 `;
-const Button = styled.button``;
+const RemoveButton = styled.button`
+	position: absolute;
+	right: 10px;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 1.5rem;
+	color: #d5d6dc;
+`;
+const AddButton = styled.button`
+	font-size: 1.5rem;
+	color: #d5d6dc;
+`;
 
 export default Options;

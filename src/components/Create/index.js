@@ -55,7 +55,7 @@ const Create = ({ polls, setPolls }) => {
 
 	return (
 		<>
-			<Header path="/poll" link="create poll" />
+			<Header path="/poll" link="Create Poll" />
 			<Container>
 				<form onSubmit={handleSubmit}>
 					<Categories category={category} setCategory={setCategory} />
