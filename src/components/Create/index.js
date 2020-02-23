@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 
 import pollServices from "../../services/poll";
 import Header from "../Common/Header";
@@ -7,6 +8,7 @@ import Categories from "./Categories";
 import Question from "./Question";
 import Options from "./Options";
 import Submit from "./Submit";
+import Settings from "./Settings";
 
 const Create = ({ polls, setPolls }) => {
 	const [loading, setLoading] = useState(false);
@@ -20,6 +22,7 @@ const Create = ({ polls, setPolls }) => {
 		background: "#EDF2F7"
 	});
 	const [options, setOptions] = useState(["", ""]);
+	const [settings, setSettings] = useState({ expiration: null });
 
 	const handleSubmit = async event => {
 		event.preventDefault();
@@ -28,7 +31,8 @@ const Create = ({ polls, setPolls }) => {
 			const newPoll = await pollServices.create({
 				title,
 				category,
-				options
+				options,
+				settings
 			});
 			setLoading(false);
 			setSuccess(true);
@@ -57,15 +61,32 @@ const Create = ({ polls, setPolls }) => {
 		<>
 			<Header path="/poll" link="Create Poll" />
 			<Container>
-				<form onSubmit={handleSubmit}>
+				<Form onSubmit={handleSubmit}>
 					<Categories category={category} setCategory={setCategory} />
 					<Question title={title} setTitle={setTitle} />
 					<Options options={options} setOptions={setOptions} />
-					<Submit disabled={disabled} status={submitStatus} />
-				</form>
+					<Footer>
+						<Submit disabled={disabled} status={submitStatus} />
+						<Settings setSettings={setSettings} />
+					</Footer>
+				</Form>
 			</Container>
 		</>
 	);
 };
+
+const Form = styled.form`
+	height: calc(100vh - 97px);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+`;
+
+const Footer = styled.div`
+	margin-top: 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+`;
 
 export default Create;

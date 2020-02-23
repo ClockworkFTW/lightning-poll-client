@@ -42,7 +42,10 @@ const Options = ({ options, setOptions }) => {
 	);
 };
 
-const Container = styled.ul``;
+const Container = styled.ul`
+	flex: 1;
+	overflow: scroll;
+`;
 const Option = styled.li`
 	position: relative;
 	margin-bottom: 0.75rem;
@@ -66,10 +69,16 @@ const RemoveButton = styled.button`
 	transform: translateY(-50%);
 	font-size: 1.5rem;
 	color: #d5d6dc;
+	border: none;
+	outline: none;
+	background: none;
 `;
 const AddButton = styled.button`
 	font-size: 1.5rem;
 	color: #d5d6dc;
+	border: none;
+	outline: none;
+	background: none;
 `;
 
 export default Options;

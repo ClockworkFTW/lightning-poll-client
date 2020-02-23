@@ -2,19 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 const Form = ({ disabled, status }) => (
-	<Container>
-		<Button type="submit" disabled={disabled}>
-			{status()}
-		</Button>
-	</Container>
+	<Button type="submit" disabled={disabled}>
+		{status()}
+	</Button>
 );
-
-const Container = styled.div`
-	position: absolute;
-	bottom: 20px;
-	left: 20px;
-	right: 20px;
-`;
 
 const Button = styled.button`
 	width: 100%;

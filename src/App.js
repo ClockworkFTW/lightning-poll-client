@@ -1,24 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { createGlobalStyle } from "styled-components";
 
 import pollServices from "./services/poll";
 
+import { GlobalStyle } from "./components/Common";
 import Loader from "./components/Common/Loader";
 import Home from "./components/Home";
 import Create from "./components/Create";
 import Vote from "./components/Vote";
-
-const GlobalStyle = createGlobalStyle`
-  	html {
-		box-sizing: border-box;
-		font-family: 'Nunito', sans-serif;
-		font-size: 16px;
-	}
-	*, *:before, *:after {
-		box-sizing: inherit;
-	}
-`;
 
 const App = () => {
 	const [polls, setPolls] = useState(null);

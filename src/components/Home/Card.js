@@ -1,8 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import moment from "moment";
 import styled from "styled-components";
 
 const Card = ({ poll }) => {
+	const getExpiration = () => {
+		const expiration = poll.settings.expiration;
+		if (expiration) {
+			const now = moment();
+			const end = moment(expiration);
+			const time = now.to(end);
+			return `Ends ${time}`;
+		} else {
+			return "No end Time";
+		}
+	};
+
 	return (
 		<Container>
 			<Header>
@@ -20,11 +33,7 @@ const Card = ({ poll }) => {
 					<AuthorProfile image={null} />
 					<AuthorName>By {poll.author}</AuthorName>
 					<Dot>&bull;</Dot>
-					<Expiration>
-						{poll.expiration
-							? `Ends ${poll.expiration}`
-							: "No end time"}
-					</Expiration>
+					<Expiration>{getExpiration()}</Expiration>
 				</Details>
 			</Header>
 			<Options>
