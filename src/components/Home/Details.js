@@ -9,7 +9,8 @@ const Details = ({ author, settings }) => {
 			const now = moment();
 			const end = moment(expiration);
 			const time = now.to(end);
-			return `Ends ${time}`;
+			const lang = now > end ? "Ended" : "Ends";
+			return `${lang} ${time}`;
 		} else {
 			return "No end Time";
 		}

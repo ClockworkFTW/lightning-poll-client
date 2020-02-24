@@ -7,7 +7,7 @@ import { GlobalStyle } from "./components/Common";
 import Loader from "./components/Common/Loader";
 import Home from "./components/Home";
 import Create from "./components/Create";
-import Vote from "./components/Vote";
+import View from "./components/View";
 
 const App = () => {
 	const [polls, setPolls] = useState(null);
@@ -32,7 +32,7 @@ const App = () => {
 						<Create polls={polls} setPolls={setPolls} />
 					</Route>
 					<Route path="/poll/:id">
-						<Vote polls={polls} setPolls={setPolls} />
+						<View polls={polls} setPolls={setPolls} />
 					</Route>
 				</Switch>
 			) : (
