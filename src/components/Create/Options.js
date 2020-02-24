@@ -52,21 +52,22 @@ const Option = styled.li`
 `;
 const Input = styled.input`
 	width: 100%;
-	padding: 0.875rem;
+	padding: 0.75rem;
 	border: 1px solid #f2f1f3;
 	border-radius: 4px;
 	font-size: 1rem;
 	font-family: inherit;
-	color: #21334f;
+	color: #21334e;
 	&::placeholder {
 		color: #818898;
 	}
 `;
 const RemoveButton = styled.button`
 	position: absolute;
-	right: 10px;
+	right: 0.75rem;
 	top: 50%;
 	transform: translateY(-50%);
+	padding: 0;
 	font-size: 1.5rem;
 	color: #d5d6dc;
 	border: none;

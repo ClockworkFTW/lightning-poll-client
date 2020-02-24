@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import moment from "moment";
 
+import { ButtonPrimary, ButtonCancel, ButtonBlank } from "../Common";
+
 const Settings = ({ setSettings }) => {
 	const [toggle, setToggle] = useState(false);
 
@@ -18,9 +20,14 @@ const Settings = ({ setSettings }) => {
 
 	return (
 		<Container>
-			<Button type="button" onClick={() => setToggle(!toggle)}>
+			<ButtonBlank
+				type="button"
+				fontSize="1.5rem"
+				color="#545e74"
+				onClick={() => setToggle(!toggle)}
+			>
 				<FontAwesomeIcon icon={["fal", "cog"]} />
-			</Button>
+			</ButtonBlank>
 			{toggle && (
 				<Modal>
 					<Content
@@ -66,16 +73,18 @@ const Settings = ({ setSettings }) => {
 									Days
 								</IntervalButton>
 							</Expiration>
-							<ModalButton type="button" onClick={handleSave}>
+						</Body>
+						<Footer>
+							<ButtonPrimary type="button" onClick={handleSave}>
 								save
-							</ModalButton>
-							<ModalButton
+							</ButtonPrimary>
+							<ButtonCancel
 								type="button"
 								onClick={() => setToggle(!toggle)}
 							>
 								exit
-							</ModalButton>
-						</Body>
+							</ButtonCancel>
+						</Footer>
 					</Content>
 				</Modal>
 			)}
@@ -112,17 +121,14 @@ const Header = styled.h1`
 const Body = styled.div`
 	padding: 1rem;
 `;
+const Footer = styled.div`
+	padding: 1rem;
+	text-align: center;
+`;
 const Expiration = styled.div`
 	display: flex;
 `;
-const Button = styled.button`
-	font-size: 1.5rem;
-	color: #545e74;
-	border: none;
-	outline: none;
-	background: none;
-`;
-const ModalButton = styled.button``;
+
 const IntervalButton = styled.button`
 	padding: 0.5rem 1.25rem;
 	border: none;

@@ -76,7 +76,8 @@ const Create = ({ polls, setPolls }) => {
 };
 
 const Form = styled.form`
-	height: calc(100vh - 97px);
+	height: calc(100vh - 57px);
+	padding: 1.25rem 0;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;

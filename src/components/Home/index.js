@@ -20,6 +20,7 @@ const Home = ({ polls }) => (
 
 const Wrapper = styled.div`
 	height: 100vh;
+	padding: 1.25rem 0;
 	overflow: scroll;
 	background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
 `;

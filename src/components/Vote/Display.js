@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import moment from "moment";
 import styled from "styled-components";
 
-import { Container } from "../Common";
+import { Container, ButtonAction } from "../Common";
+import Metadata from "../Home/Metadata";
+import Details from "../Home/Details";
 
 const Display = ({ poll, handleVote, votePercent }) => {
 	const [vote, setVote] = useState(null);
@@ -10,46 +11,62 @@ const Display = ({ poll, handleVote, votePercent }) => {
 
 	return (
 		<Container>
-			<Header>
-				<Title>{poll.title}</Title>
-				<Created>{moment(poll.created).format("MMM DD, YYYY")}</Created>
-			</Header>
-			<Options>
-				{poll.options.map((option, i) => (
-					<Option key={i}>
-						<Content onClick={() => setVote(i)} active={vote === i}>
-							<Text>{option}</Text>
-							{voted && <Bar width={votePercent(i)} />}
-						</Content>
-						{voted && (
-							<Percent>{votePercent(i)}% people voted</Percent>
-						)}
-					</Option>
-				))}
-			</Options>
-			<Button
-				onClick={() => handleVote(vote, setVoted)}
-				disabled={vote === null || voted}
-			>
-				{voted ? "Thanks for your response!" : "Vote"}
-			</Button>
+			<Layout>
+				<Header>
+					<Metadata category={poll.category} votes={poll.votes} />
+					<Title>{poll.title}</Title>
+					<Details author={poll.author} settings={poll.settings} />
+				</Header>
+				<Body>
+					{poll.options.map((option, i) => (
+						<Option key={i}>
+							<Content
+								onClick={() => setVote(i)}
+								active={vote === i}
+							>
+								<Text>{option}</Text>
+								{voted && <Bar width={votePercent(i)} />}
+							</Content>
+							{voted && (
+								<Percent>
+									{votePercent(i)}% people voted
+								</Percent>
+							)}
+						</Option>
+					))}
+				</Body>
+				<Footer>
+					<ButtonAction
+						onClick={() => handleVote(vote, setVoted)}
+						width="100%"
+						disabled={vote === null || voted}
+					>
+						{voted ? "Thanks for your response!" : "Vote"}
+					</ButtonAction>
+				</Footer>
+			</Layout>
 		</Container>
 	);
 };
 
+const Layout = styled.div`
+	height: calc(100vh - 57px);
+	padding: 1.25rem 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+`;
 const Header = styled.div``;
 const Title = styled.h1`
-	margin-bottom: 10px;
+	margin: 1.25rem 0 0.5rem 0;
+	line-height: 1.75rem;
 	font-family: "Nunito Sans", sans-serif;
 	font-size: 1.25rem;
 	font-weight: 800;
 	color: #21334e;
 `;
-const Created = styled.h3`
-	font-size: 0.875rem;
-	color: #a0aec0;
-`;
-const Options = styled.ul`
+const Body = styled.ul`
+	flex: 1;
 	margin: 30px 0;
 `;
 const Option = styled.li`
@@ -57,7 +74,7 @@ const Option = styled.li`
 `;
 const Content = styled.div`
 	position: relative;
-	padding: 10px;
+	padding: 0.75rem;
 	border: 1px solid #f1f3f2;
 	border-left: ${props =>
 		props.active ? "4px solid #3960e4" : "1px solid #f1f3f2"};
@@ -86,23 +103,8 @@ const Bar = styled.div`
 	width: ${props => `${props.width}%`};
 	background: #f4f6f8;
 `;
-const Button = styled.button`
-	width: 100%;
-	padding: 1rem;
-	outline: none;
-	border: none;
-	border-radius: 500px;
-	background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
-	font-family: inherit;
-	font-size: 1rem;
-	color: #ffffff;
-	&:disabled {
-		background: #f1f3f4;
-		color: #8a93a0;
-	}
-	&:hover {
-		cursor: pointer;
-	}
+const Footer = styled.div`
+	text-align: center;
 `;
 
 export default Display;

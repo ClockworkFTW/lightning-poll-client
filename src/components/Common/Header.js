@@ -20,6 +20,7 @@ const Header = ({ path, link }) => (
 );
 
 const Wrapper = styled.div`
+	padding: 1.25rem 0;
 	background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
 `;
 
