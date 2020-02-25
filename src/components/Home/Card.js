@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 import { ButtonPrimary, RouterLink } from "../Common";
 import Metadata from "./Metadata";
-import Details from "./Details";
+import Expiration from "./Expiration";
 
 const Card = ({ poll }) => (
 	<Container>
 		<Header>
 			<Metadata category={poll.category} votes={poll.votes} />
 			<Title>{poll.title}</Title>
-			<Details author={poll.author} settings={poll.settings} />
+			<Expiration settings={poll.settings} />
 		</Header>
 		<Options>
 			{poll.options.map((option, i) => (
@@ -35,7 +35,7 @@ const Header = styled.div`
 	margin-bottom: 1rem;
 `;
 const Title = styled.h1`
-	margin: 1.25rem 0 0.5rem 0;
+	margin: 1rem 0 0.75rem 0;
 	line-height: 1.5rem;
 	font-family: "Nunito Sans", sans-serif;
 	font-size: 1.125rem;

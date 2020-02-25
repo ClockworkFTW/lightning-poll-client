@@ -20,7 +20,6 @@ export const GlobalStyle = createGlobalStyle`
 // Layout
 
 export const Container = styled.div`
-	position: relative;
 	max-width: 600px;
 	margin: 0 auto;
 	padding: 0 1.25rem;
