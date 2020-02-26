@@ -3,11 +3,10 @@ import moment from "moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
-const getExpiration = settings => {
-	const expiration = settings.expiration;
-	if (expiration) {
+const getExpiration = (created, expiration) => {
+	if (expiration !== 0) {
 		const now = moment();
-		const end = moment(expiration);
+		const end = moment(created).add(expiration, "seconds");
 		const time = now.to(end);
 		const lang = now > end ? "Ended" : "Ends";
 		return `${lang} ${time}`;
@@ -16,13 +15,13 @@ const getExpiration = settings => {
 	}
 };
 
-const Expiration = ({ settings }) => (
+const Expiration = ({ created, expiration }) => (
 	<Container>
 		<FontAwesomeIcon
 			icon={["fal", "clock"]}
 			style={{ marginRight: "0.5rem" }}
 		/>
-		{getExpiration(settings)}
+		{getExpiration(created, expiration)}
 	</Container>
 );
 

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import moment from "moment";
 
 import { ButtonPrimary, ButtonCancel } from "../../Common";
 import Expiration from "./Expiration";
@@ -8,14 +7,14 @@ import Setting from "./Setting";
 
 const Modal = ({ toggle, setToggle, setSettings }) => {
 	const [time, setTime] = useState(1);
-	const [int, setInt] = useState("m");
+	const [int, setInt] = useState(0);
 
-	const [prvLink, setPrvLink] = useState(false);
-	const [ipBlock, setIpBlock] = useState(false);
+	const [privateLink, setPrivateLink] = useState(false);
+	const [blockSameIp, setBlockSameIp] = useState(false);
 
 	const handleSave = () => {
-		const expiration = moment().add(time, int);
-		setSettings({ expiration, prvLink, ipBlock });
+		const expiration = time * int;
+		setSettings({ expiration, privateLink, blockSameIp });
 		setToggle(!toggle);
 	};
 
@@ -33,13 +32,13 @@ const Modal = ({ toggle, setToggle, setSettings }) => {
 						/>
 						<Setting
 							header="Private (only via direct link)"
-							setting={prvLink}
-							setSetting={setPrvLink}
+							setting={privateLink}
+							setSetting={setPrivateLink}
 						/>
 						<Setting
 							header="Allow multiple votes from one IP"
-							setting={ipBlock}
-							setSetting={setIpBlock}
+							setting={blockSameIp}
+							setSetting={setBlockSameIp}
 						/>
 					</Body>
 					<Footer>

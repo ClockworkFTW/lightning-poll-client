@@ -1,18 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-const Metadata = ({ category, votes }) => {
-	const voteCount = votes.reduce((a, b) => a + b, 0);
-
-	return (
-		<Container>
-			<Category color={category.color} background={category.background}>
-				{category.name}
-			</Category>
-			<Votes>{voteCount} Votes</Votes>
-		</Container>
-	);
-};
+const Metadata = ({ category, votes }) => (
+	<Container>
+		<Category color={category.color} background={category.background}>
+			{category.name}
+		</Category>
+		<Votes>{votes.length} Votes</Votes>
+	</Container>
+);
 
 const Container = styled.div`
 	display: flex;

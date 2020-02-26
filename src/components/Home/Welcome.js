@@ -5,7 +5,9 @@ import styled from "styled-components";
 const Welcome = () => (
 	<Container>
 		<Title>Welcome to Lightning Poll</Title>
-		<Intro>Create polls with ease and share them with your friends.</Intro>
+		<Intro>
+			Create anonymous polls with ease and share them with the world.
+		</Intro>
 		<RouterLink to="/poll/new">Create</RouterLink>
 	</Container>
 );

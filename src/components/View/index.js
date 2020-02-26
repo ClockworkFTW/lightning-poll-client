@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import moment from "moment";
 import styled from "styled-components";
 
+import ipifyServices from "../../services/ipify";
 import pollServices from "../../services/poll";
 import { Container } from "../Common";
 import Header from "../Common/Header";
@@ -17,10 +18,13 @@ const Vote = ({ polls, setPolls }) => {
 	const [vote, setVote] = useState(null);
 	const [voted, setVoted] = useState(false);
 
-	const locked = moment(poll.settings.expiration) < moment();
+	const locked =
+		moment(poll.created).add(poll.settings.expiration, "seconds") <
+		moment();
 
 	const handleVote = async () => {
-		const updatedPoll = await pollServices.vote(poll.link, { vote });
+		const ip = await ipifyServices.get();
+		const updatedPoll = await pollServices.vote(poll.link, { vote, ip });
 		const updatedPolls = polls.map(poll =>
 			poll.link === id ? updatedPoll : poll
 		);
@@ -30,9 +34,14 @@ const Vote = ({ polls, setPolls }) => {
 
 	const votePercent = i => {
 		const { votes } = poll;
-		const total = votes.reduce((acc, cur) => acc + cur, 0);
-		const percent = Math.round((votes[i] / total) * 100);
-		return percent ? percent : 0;
+		let count = 0;
+		votes.forEach(vote => {
+			if (vote.vote === i) {
+				count++;
+			}
+		});
+		const percent = Math.round((count / votes.length) * 100);
+		return count === 0 ? 0 : percent;
 	};
 
 	return (
@@ -45,6 +54,7 @@ const Vote = ({ polls, setPolls }) => {
 						options={poll.options}
 						vote={vote}
 						setVote={setVote}
+						voted={voted}
 						votePercent={votePercent}
 						locked={locked}
 					/>

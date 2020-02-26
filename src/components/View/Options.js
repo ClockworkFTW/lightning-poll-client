@@ -1,19 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 
-const Options = ({ options, vote, setVote, votePercent, locked }) => (
-	<Container>
-		{options.map((option, i) => (
-			<Option key={i}>
-				<Content onClick={() => setVote(i)} active={vote === i}>
-					<Text>{option}</Text>
-					{locked && <Bar width={votePercent(i)} />}
-				</Content>
-				{locked && <Percent>{votePercent(i)}% people voted</Percent>}
-			</Option>
-		))}
-	</Container>
-);
+const Options = ({ options, vote, setVote, voted, votePercent, locked }) => {
+	const hide = voted || locked;
+	return (
+		<Container>
+			{options.map((option, i) => (
+				<Option key={i}>
+					<Content onClick={() => setVote(i)} active={vote === i}>
+						<Text>{option}</Text>
+						{hide && <Bar width={votePercent(i)} />}
+					</Content>
+					{hide && <Percent>{votePercent(i)}% people voted</Percent>}
+				</Option>
+			))}
+		</Container>
+	);
+};
 
 const Container = styled.ul`
 	flex: 1;

@@ -8,7 +8,10 @@ const Info = ({ poll }) => (
 	<Container>
 		<Metadata category={poll.category} votes={poll.votes} />
 		<Title>{poll.title}</Title>
-		<Expiration settings={poll.settings} />
+		<Expiration
+			created={poll.created}
+			expiration={poll.settings.expiration}
+		/>
 	</Container>
 );
 

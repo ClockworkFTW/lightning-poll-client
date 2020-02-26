@@ -3,47 +3,86 @@ import styled from "styled-components";
 
 const Expiraiton = ({ time, setTime, int, setInt }) => (
 	<Container>
-		<Header>Poll ends in</Header>
-		<Input
-			type="number"
-			value={time}
-			onChange={event => setTime(event.target.value)}
-		/>
-		<Button type="button" onClick={() => setInt("m")} active={int === "m"}>
-			Mins
-		</Button>
-		<Button type="button" onClick={() => setInt("h")} active={int === "h"}>
-			Hours
-		</Button>
-		<Button type="button" onClick={() => setInt("d")} active={int === "d"}>
-			Days
-		</Button>
+		<Header>
+			<Title>Poll ends in:</Title>
+			{int !== 0 && (
+				<Time
+					type="number"
+					value={time}
+					onChange={event => setTime(event.target.value)}
+				/>
+			)}
+		</Header>
+		<Options>
+			<Interval
+				type="button"
+				onClick={() => setInt(0)}
+				active={int === 0}
+			>
+				Never
+			</Interval>
+			<Interval
+				type="button"
+				onClick={() => setInt(60)}
+				active={int === 60}
+			>
+				Minutes
+			</Interval>
+			<Interval
+				type="button"
+				onClick={() => setInt(3600)}
+				active={int === 3600}
+			>
+				Hours
+			</Interval>
+			<Interval
+				type="button"
+				onClick={() => setInt(86400)}
+				active={int === 86400}
+			>
+				Days
+			</Interval>
+		</Options>
 	</Container>
 );
 
-const Container = styled.div`
+const Container = styled.div``;
+
+const Header = styled.div`
+	display: flex;
+	align-items: center;
+	margin-bottom: 1rem;
+`;
+
+const Title = styled.header`
+	font-size: 0.875rem;
+	color: #21334e;
+`;
+
+const Time = styled.input`
+	width: 30px;
+	text-align: center;
+`;
+
+const Options = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 `;
 
-const Header = styled.header`
-	font-size: 0.875rem;
-	color: #21334e;
-`;
-
-const Input = styled.input`
-	width: 30px;
-	text-align: center;
-`;
-
-const Button = styled.button`
-	padding: 0.5rem 1.25rem;
+const Interval = styled.button`
+	width: 25%;
+	line-height: 2rem;
 	border: none;
 	outline: none;
 	border-radius: 500px;
-	background: ${props => (props.active ? "blue" : "none")};
-	color: ${props => (props.active ? "white" : "none")};
+	background: ${props =>
+		props.active
+			? "linear-gradient(-20deg,#b721ff 0%,#21d4fd 100%)"
+			: "none"};
+	font-family: inherit;
+	font-size: 0.875rem;
+	color: ${props => (props.active ? "white" : "#21334e")};
 `;
 
 export default Expiraiton;

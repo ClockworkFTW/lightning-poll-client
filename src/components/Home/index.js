@@ -5,18 +5,21 @@ import { Container } from "../Common";
 import Welcome from "./Welcome";
 import Card from "./Card";
 
-const Home = ({ polls }) => (
-	<Wrapper>
-		<Container>
-			<Welcome />
-			<List>
-				{polls.map(poll => (
-					<Card key={poll.link} poll={poll} />
-				))}
-			</List>
-		</Container>
-	</Wrapper>
-);
+const Home = ({ polls }) => {
+	const publicPolls = polls.filter(poll => !poll.settings.privateLink);
+	return (
+		<Wrapper>
+			<Container>
+				<Welcome />
+				<List>
+					{publicPolls.map(poll => (
+						<Card key={poll.link} poll={poll} />
+					))}
+				</List>
+			</Container>
+		</Wrapper>
+	);
+};
 
 const Wrapper = styled.div`
 	height: 100vh;

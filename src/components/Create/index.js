@@ -22,7 +22,7 @@ const Create = ({ polls, setPolls }) => {
 		background: "#EDF2F7"
 	});
 	const [options, setOptions] = useState(["", ""]);
-	const [settings, setSettings] = useState({ expiration: null });
+	const [settings, setSettings] = useState(null);
 
 	const handleSubmit = async event => {
 		event.preventDefault();
