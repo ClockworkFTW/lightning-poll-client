@@ -13,11 +13,7 @@ const App = () => {
 	const [polls, setPolls] = useState(null);
 
 	useEffect(() => {
-		const fetchPolls = async () => {
-			const polls = await pollServices.getAll();
-			setPolls(polls);
-		};
-		fetchPolls();
+		pollServices.getAll(setPolls);
 	}, []);
 
 	return (

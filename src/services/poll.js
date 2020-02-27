@@ -2,9 +2,9 @@ import axios from "axios";
 
 const URL = "http://localhost:3005/poll";
 
-const getAll = async () => {
+const getAll = async updateCb => {
 	const result = await axios.get(URL);
-	return result.data;
+	updateCb(result.data);
 };
 
 const create = async poll => {
