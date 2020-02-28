@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "http://localhost:3005/poll";
+const URL = "/api/poll";
 
 const getAll = async updateCb => {
 	const result = await axios.get(URL);
