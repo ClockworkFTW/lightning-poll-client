@@ -3,19 +3,18 @@ import styled from "styled-components";
 
 const Expiraiton = ({ time, setTime, int, setInt }) => (
   <Container>
-    <Header>
-      <Title>Poll ends in:</Title>
-      {int !== 0 && (
-        <Time
-          type="number"
-          value={time}
-          onChange={(event) => setTime(event.target.value)}
-        />
-      )}
-    </Header>
+    <Group>
+      <Title>Ends in:</Title>
+      <Time
+        type="number"
+        value={time}
+        disabled={int === 0}
+        onChange={(event) => setTime(event.target.value)}
+      />
+    </Group>
     <Options>
       <Interval type="button" onClick={() => setInt(60)} active={int === 60}>
-        Minutes
+        Mins
       </Interval>
       <Interval
         type="button"
@@ -38,12 +37,16 @@ const Expiraiton = ({ time, setTime, int, setInt }) => (
   </Container>
 );
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+`;
 
-const Header = styled.div`
+const Group = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
 `;
 
 const Title = styled.header`
@@ -53,6 +56,7 @@ const Title = styled.header`
 
 const Time = styled.input`
   width: 30px;
+  margin-left: 5px;
   text-align: center;
 `;
 
@@ -63,8 +67,8 @@ const Options = styled.div`
 `;
 
 const Interval = styled.button`
-  width: 25%;
-  line-height: 2rem;
+  margin-left: 4px;
+  padding: 0.375rem;
   border: none;
   outline: none;
   border-radius: 500px;

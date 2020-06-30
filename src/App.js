@@ -10,32 +10,32 @@ import Create from "./components/Create";
 import View from "./components/View";
 
 const App = () => {
-	const [polls, setPolls] = useState(null);
+  const [polls, setPolls] = useState(null);
 
-	useEffect(() => {
-		pollServices.getAll(setPolls);
-	}, []);
+  useEffect(() => {
+    pollServices.getAll(setPolls);
+  }, []);
 
-	return (
-		<Router>
-			<GlobalStyle />
-			{polls ? (
-				<Switch>
-					<Route path="/poll" exact>
-						<Home polls={polls} />
-					</Route>
-					<Route path="/poll/new">
-						<Create polls={polls} setPolls={setPolls} />
-					</Route>
-					<Route path="/poll/:id">
-						<View polls={polls} setPolls={setPolls} />
-					</Route>
-				</Switch>
-			) : (
-				<Loader />
-			)}
-		</Router>
-	);
+  return (
+    <Router>
+      <GlobalStyle />
+      {polls ? (
+        <Switch>
+          <Route path="/" exact>
+            <Home polls={polls} />
+          </Route>
+          <Route path="/new">
+            <Create polls={polls} setPolls={setPolls} />
+          </Route>
+          <Route path="/:id">
+            <View polls={polls} setPolls={setPolls} />
+          </Route>
+        </Switch>
+      ) : (
+        <Loader />
+      )}
+    </Router>
+  );
 };
 
 export default App;
